@@ -1,17 +1,18 @@
  #!/usr/bin/python
  # -*- coding: utf-8 -*-
 
-import logging
-import config
+import logging, os, sys, config, ngrok
 from flask import Flask, render_template
 from flask_ask import Ask, statement, question, session
 from coinmarketcap import Market
 coinmarketcap = Market()
-import os
-import sys
 reload(sys)
 crypto = config.crypto
 os.spawnl(os.P_DETACH, 'ngrok http 5000')
+ngrok.client.BASE_URL = "http://localhost:5000"
+tunnel = ngrok.client.get_tunnels()[-1]
+url = tunnel['public_url']
+print "Public URL is: " + url
 sys.setdefaultencoding('utf8')
 app = Flask(__name__)
 
