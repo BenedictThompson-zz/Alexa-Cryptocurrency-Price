@@ -20,4 +20,4 @@ EXPOSE 5000
 ENV NAME Alexa
 
 # Run app.py when the container launches
-CMD ["/usr/bin/python", "app.py"]
+CMD ["python", "app.py"]
